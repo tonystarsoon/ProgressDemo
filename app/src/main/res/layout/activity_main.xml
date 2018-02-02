@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tony="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:onClick="dialog"
+        android:text="Hello World!" />
+
+    <demo.tont.com.myapplication.Progress
+        android:id="@+id/progress"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_margin="10dp"
+        tony:alphaProgressColor="false"
+        tony:backgroundColor="@android:color/transparent"
+        tony:centerTextSize="24sp"
+        tony:footerTextSize="14sp"
+        tony:maxValue="1000"
+        tony:progressColor="@color/white"
+        tony:progressType="values"
+        tony:ringBackground="@color/ring_bg"
+        tony:ringStroke="6dp" />
+
+</LinearLayout>

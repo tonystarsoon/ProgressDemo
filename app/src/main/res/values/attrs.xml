@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Progress">
+        <attr name="backgroundColor" format="color" />
+        <attr name="ringBackground" format="color" />
+        <attr name="progressColor" format="color" />
+        <attr name="ringStroke" format="dimension" />
+        <attr name="alphaProgressColor" format="boolean" />
+        <attr name="maxValue" format="integer" />
+        <attr name="footerTextSize" format="dimension" />
+        <attr name="centerTextSize" format="dimension" />
+        <attr name="progressType" format="enum">
+            <enum name="percent" value="0" />
+            <enum name="values" value="1" />
+        </attr>
+    </declare-styleable>
+</resources>

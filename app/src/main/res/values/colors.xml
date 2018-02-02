@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FF3F51B5</color>
+    <color name="colorPrimaryDark">#FF303F9F</color>
+    <color name="colorAccent">#FFFF4081</color>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="bg">#22222222</color>
+    <color name="ring_bg">#44FFFFFF</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>
