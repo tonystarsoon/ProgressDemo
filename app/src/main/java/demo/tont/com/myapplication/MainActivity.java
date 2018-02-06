@@ -1,24 +1,41 @@
 package demo.tont.com.myapplication;
 
+import android.animation.IntEvaluator;
+import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getName();
-    private View view;
+    private LinearProgress linearProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        linearProgress = findViewById(R.id.linearProgress);
+
+        ValueAnimator valueAnimator = ValueAnimator.ofObject(new IntEvaluator(), 0, 40);
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                int animatedValue = (int) animation.getAnimatedValue();
+                linearProgress.notifyProgress(animatedValue);
+            }
+        });
+        valueAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
+        valueAnimator.setDuration(2000);
+        valueAnimator.start();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Progress viewById = findViewById(R.id.progress);
+        RingProgress viewById = findViewById(R.id.progress);
         viewById.updateProgress(800);
     }
 

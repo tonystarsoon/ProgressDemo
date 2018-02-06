@@ -20,8 +20,8 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 /**
  * 仿华为天气进度圈
  */
-public class Progress extends View {
-    private static final String TAG = Progress.class.getName();
+public class RingProgress extends View {
+    private static final String TAG = RingProgress.class.getName();
     private int mDefaultBgColor = 0X00ffffff;
     private int mDefaultRingColor = 0X44FFFFFF;
     private int mDefaultProgressColor = 0XFFFFFFFF;
@@ -35,21 +35,21 @@ public class Progress extends View {
     private RectF recrF;
     private int progressType;
 
-    public Progress(Context context, @Nullable AttributeSet attrs) {
+    public RingProgress(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs);
     }
 
     private void init(Context context, AttributeSet attrs) {
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.Progress);
-        mDefaultStrokeWidth = (int) typedArray.getDimension(R.styleable.Progress_ringStroke, 14);
-        mDefaultBgColor = typedArray.getColor(R.styleable.Progress_backgroundColor, 0X00ffffff);
-        mDefaultRingColor = typedArray.getColor(R.styleable.Progress_ringBackground, 0X44FFFFFF);
-        mDefaultProgressColor = typedArray.getColor(R.styleable.Progress_progressColor, 0XFFFFFFFF);
-        mAxValue = typedArray.getInteger(R.styleable.Progress_maxValue, 100);
-        mFooterTextSize = typedArray.getDimension(R.styleable.Progress_footerTextSize, 12.0f);
-        mCenterTextSize = typedArray.getDimension(R.styleable.Progress_centerTextSize, 20.0f);
-        progressType = typedArray.getInt(R.styleable.Progress_progressType, 0);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.RingProgress);
+        mDefaultStrokeWidth = (int) typedArray.getDimension(R.styleable.RingProgress_ringStroke, 14);
+        mDefaultBgColor = typedArray.getColor(R.styleable.RingProgress_backgroundColor, 0X00ffffff);
+        mDefaultRingColor = typedArray.getColor(R.styleable.RingProgress_ringBackground, 0X44FFFFFF);
+        mDefaultProgressColor = typedArray.getColor(R.styleable.RingProgress_progressColor, 0XFFFFFFFF);
+        mAxValue = typedArray.getInteger(R.styleable.RingProgress_maxValue, 100);
+        mFooterTextSize = typedArray.getDimension(R.styleable.RingProgress_footerTextSize, 12.0f);
+        mCenterTextSize = typedArray.getDimension(R.styleable.RingProgress_centerTextSize, 20.0f);
+        progressType = typedArray.getInt(R.styleable.RingProgress_progressType, 0);
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.STROKE);
@@ -58,7 +58,6 @@ public class Progress extends View {
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        super.onSizeChanged(w, h, oldw, oldh);
         recrF = getRecrF();
     }
 

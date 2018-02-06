@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="Progress">
+    <declare-styleable name="RingProgress">
         <attr name="backgroundColor" format="color" />
         <attr name="ringBackground" format="color" />
         <attr name="progressColor" format="color" />
@@ -14,4 +14,28 @@
             <enum name="values" value="1" />
         </attr>
     </declare-styleable>
+
+    <declare-styleable name="LinearProgress">
+        <attr name="linearProgressBackground" format="color" />
+        <attr name="linearProgressBackgroundColor" format="color" />
+        <attr name="linearProgressColor" format="color" />
+        <attr name="linearProgressTextSize" format="dimension" />
+        <attr name="linearProgressMaxValue" format="integer" />
+        <attr name="linearProgressRadius" format="dimension" />
+        <attr name="linearProgressDrawText" format="boolean" />
+        <attr name="linearProgressTextColor" format="color" />
+        <attr name="linearProgressOrientational" format="enum">
+            <enum name="horizontal" value="0" />
+            <enum name="vertical_down" value="1" />
+            <enum name="vertical_up" value="2" />
+        </attr>
+        <attr name="linearProgressType" format="enum">
+            <enum name="percent" value="0" />
+            <enum name="values" value="1" />
+        </attr>
+    </declare-styleable>
 </resources>
+
+
+
+

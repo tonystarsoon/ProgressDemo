@@ -6,18 +6,12 @@
     android:background="@android:color/black"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/colorAccent"
-        android:onClick="dialog"
-        android:text="Hello World!" />
-
-    <demo.tont.com.myapplication.Progress
+    <demo.tont.com.myapplication.RingProgress
         android:id="@+id/progress"
         android:layout_width="160dp"
         android:layout_height="160dp"
         android:layout_margin="10dp"
+        android:visibility="gone"
         tony:alphaProgressColor="false"
         tony:backgroundColor="@android:color/transparent"
         tony:centerTextSize="24sp"
@@ -27,5 +21,20 @@
         tony:progressType="values"
         tony:ringBackground="@color/ring_bg"
         tony:ringStroke="6dp" />
+
+    <demo.tont.com.myapplication.LinearProgress
+        android:id="@+id/linearProgress"
+        android:layout_width="210dp"
+        android:layout_height="10dp"
+        android:layout_margin="10dp"
+        tony:linearProgressBackground="@android:color/transparent"
+        tony:linearProgressBackgroundColor="@android:color/darker_gray"
+        tony:linearProgressColor="@color/colorAccent"
+        tony:linearProgressDrawText="true"
+        tony:linearProgressMaxValue="100"
+        tony:linearProgressOrientational="horizontal"
+        tony:linearProgressRadius="5dp"
+        tony:linearProgressTextColor="@android:color/white"
+        tony:linearProgressTextSize="6sp" />
 
 </LinearLayout>
