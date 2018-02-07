@@ -3,7 +3,7 @@
     xmlns:tony="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/black"
+    android:background="@android:color/white"
     android:orientation="vertical">
 
     <demo.tont.com.myapplication.RingProgress
@@ -27,6 +27,7 @@
         android:layout_width="210dp"
         android:layout_height="10dp"
         android:layout_margin="10dp"
+        android:visibility="gone"
         tony:linearProgressBackground="@android:color/transparent"
         tony:linearProgressBackgroundColor="@android:color/darker_gray"
         tony:linearProgressColor="@color/colorAccent"
@@ -36,5 +37,12 @@
         tony:linearProgressRadius="5dp"
         tony:linearProgressTextColor="@android:color/white"
         tony:linearProgressTextSize="6sp" />
+
+
+    <demo.tont.com.myapplication.HoodleProgress
+        android:id="@+id/hoodleProgress"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="10dp" />
 
 </LinearLayout>

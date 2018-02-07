@@ -18,6 +18,11 @@ import android.widget.TextView;
 
 import java.io.Serializable;
 
+/**
+ * 基于builder模式的弹窗
+ * 1.处理了横竖屏切换带来的问题
+ * 2.自定义属性支持
+ */
 public class ButtonDialog extends DialogFragment implements View.OnClickListener {
     private static final String TAG = "ButtonDialog";
     private static int DEFAULT_HEIGHT = 190;

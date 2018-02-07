@@ -10,14 +10,30 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getName();
-    private LinearProgress linearProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        linearProgress = findViewById(R.id.linearProgress);
+        testLinearProgress();
+        testRingProgress();
+
+        testHoodleProgress();
+    }
+
+    private void testHoodleProgress() {
+        HoodleProgress hoodleProgress = findViewById(R.id.hoodleProgress);
+//        hoodleProgress.start();
+    }
+
+    private void testRingProgress() {
+        RingProgress viewById = findViewById(R.id.progress);
+        viewById.updateProgress(800);
+    }
+
+    private void testLinearProgress() {
+        final LinearProgress linearProgress = findViewById(R.id.linearProgress);
 
         ValueAnimator valueAnimator = ValueAnimator.ofObject(new IntEvaluator(), 0, 40);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -30,13 +46,6 @@ public class MainActivity extends AppCompatActivity {
         valueAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
         valueAnimator.setDuration(2000);
         valueAnimator.start();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        RingProgress viewById = findViewById(R.id.progress);
-        viewById.updateProgress(800);
     }
 
     public void dialog(View view) {
