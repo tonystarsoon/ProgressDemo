@@ -6,7 +6,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -15,18 +14,15 @@ import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
 
-
-
 public class HoodleProgress extends View {
     private static final String TAG = HoodleProgress.class.getName();
     private int mDefaultColor = 0XFF000000;
     private Paint mPaint = null;
     private Cricle circle = null;
     private int mHoodleRadius = 15;//小弹珠的半径
-    private double mHoodleAngle = 0;
-    private long lastTimeAnimated;
-    private float spinSpeed = 20.0f;
+    private double mHoodleAngle = -Math.PI / 2;
     private boolean startEd = false;
+    private ValueAnimator valueAnimator;
 
     public HoodleProgress(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -51,29 +47,16 @@ public class HoodleProgress extends View {
             circle.x = measuredWidth / 2;
             circle.y = measuredHeight / 2;
             circle.radius = width / 2 - mHoodleRadius;//大圆的半径
-            lastTimeAnimated = SystemClock.currentThreadTimeMillis();
         }
-        if (!startEd) {
-            startEd = true;
-            ValueAnimator valueAnimator = ValueAnimator.ofObject(new FloatEvaluator(), -Math.PI / 2, Math.PI * 3 / 2);
-            valueAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
-            valueAnimator.setRepeatCount(10000);
-            valueAnimator.setDuration(1500);
-            valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public void onAnimationUpdate(ValueAnimator animation) {
-                    mHoodleAngle = (float) animation.getAnimatedValue();
-                    invalidate();
-                }
-            });
-            valueAnimator.start();
-        }
+        initAnimation();
     }
 
     @Override
     protected void onVisibilityChanged(@NonNull View changedView, int visibility) {
-        super.onVisibilityChanged(changedView, visibility);
         Log.i(TAG, "onVisibilityChanged: " + visibility);
+        if (visibility == View.VISIBLE) {
+            startAnimation();
+        }
     }
 
     @Override
@@ -111,8 +94,9 @@ public class HoodleProgress extends View {
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         Log.i(TAG, "onDetachedFromWindow: ");
+        stopAnimation();
     }
-
+    
     class Cricle {
         int x;
         int y;
@@ -132,5 +116,39 @@ public class HoodleProgress extends View {
         }
         return new RectF(left, top, right, bottom);
     }
+
+    private void initAnimation() {
+        if (!startEd) {
+            startEd = true;
+            valueAnimator = ValueAnimator.ofObject(new FloatEvaluator(), -Math.PI / 2, Math.PI * 3 / 2);
+            valueAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
+            valueAnimator.setRepeatCount(10000);
+            valueAnimator.setDuration(1500);
+            valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    mHoodleAngle = (float) animation.getAnimatedValue();
+                    invalidate();
+                }
+            });
+            startAnimation();
+        }
+    }
+
+    private void startAnimation() {
+        if (valueAnimator != null && !valueAnimator.isRunning()) {
+            valueAnimator.start();
+        }
+    }
+
+    private void stopAnimation() {
+        if (valueAnimator != null && valueAnimator.isRunning()) {
+            valueAnimator.cancel();
+            valueAnimator.end();
+        }
+    }
 }
+
+
+
 
