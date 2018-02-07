@@ -15,6 +15,8 @@ import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
 
+
+
 public class HoodleProgress extends View {
     private static final String TAG = HoodleProgress.class.getName();
     private int mDefaultColor = 0XFF000000;
