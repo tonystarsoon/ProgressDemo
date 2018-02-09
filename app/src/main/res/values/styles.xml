@@ -13,4 +13,7 @@
         <item name="android:windowExitAnimation">@anim/cumstom_enter</item>
     </style>
 
+    <style name="CustomRadioGroupTheme" parent="@android:style/Widget.CompoundButton.RadioButton">
+        <item name="android:button">@drawable/selector_regin_select_radio_group</item>
+    </style>
 </resources>

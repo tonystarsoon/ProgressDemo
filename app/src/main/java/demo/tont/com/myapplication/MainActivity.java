@@ -5,8 +5,10 @@ import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.widget.RadioButton;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getName();
@@ -20,6 +22,25 @@ public class MainActivity extends AppCompatActivity {
         testRingProgress();
 
         testHoodleProgress();
+    }
+    private String[] names = {"我的世界","世界","世界","世界","世界","我的世界"};
+
+    public void dialog1(View view1) {
+        MyRadioGroup myRadioGroup = findViewById(R.id.select_dialog);
+
+        for (int i = 0; i < names.length; i++) {
+            LayoutInflater layoutInflater = getLayoutInflater();
+            RadioButton view = (RadioButton) layoutInflater.inflate(R.layout.child, null, false);
+            view.setTag("" + i);
+            view.setText(names[i]);
+            myRadioGroup.addView(view);
+        }
+        myRadioGroup.setOnCheckedChangeListener(new MyRadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(int position) {
+                Log.i(TAG, "onCheckedChanged: " + position);
+            }
+        });
     }
 
     private void testHoodleProgress() {

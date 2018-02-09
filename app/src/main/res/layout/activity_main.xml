@@ -43,6 +43,19 @@
         android:id="@+id/hoodleProgress"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_margin="10dp" />
+        android:layout_margin="10dp"
+        android:visibility="gone" />
 
+    <demo.tont.com.myapplication.MyRadioGroup
+        android:id="@+id/select_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        tony:lineCount="3" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:onClick="dialog1"
+        android:text="tianjia" />
 </LinearLayout>

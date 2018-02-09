@@ -1,6 +1,5 @@
 package demo.tont.com.myapplication;
 
-import android.animation.FloatEvaluator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -20,6 +19,7 @@ public class HoodleProgress extends View {
     private Paint mPaint = null;
     private Cricle circle = null;
     private int mHoodleRadius = 15;//小弹珠的半径
+    private int[] mHoodleRadiusArray = new int[4];//小弹珠的半径
     private double mHoodleAngle = -Math.PI / 2;
     private boolean startEd = false;
     private ValueAnimator valueAnimator;
@@ -34,6 +34,10 @@ public class HoodleProgress extends View {
         mPaint.setAntiAlias(true);
         mPaint.setColor(mDefaultColor);
         mPaint.setStyle(Paint.Style.STROKE);
+        mHoodleRadiusArray[0] = 15;
+        mHoodleRadiusArray[1] = 12;
+        mHoodleRadiusArray[2] = 9;
+        mHoodleRadiusArray[3] = 6;
     }
 
     @Override
@@ -46,7 +50,7 @@ public class HoodleProgress extends View {
             int width = measuredWidth > measuredHeight ? measuredHeight : measuredWidth;
             circle.x = measuredWidth / 2;
             circle.y = measuredHeight / 2;
-            circle.radius = width / 2 - mHoodleRadius;//大圆的半径
+            circle.radius = width / 2 - mHoodleRadiusArray[0];//大圆的半径
         }
         initAnimation();
     }
@@ -74,19 +78,21 @@ public class HoodleProgress extends View {
     }
 
     private void drawHoodle(Canvas canvas) {
-        RectF child = getHoodle();
-        canvas.drawArc(child, 0, 360, false, mPaint);
+        for (int index = 0; index < mHoodleRadiusArray.length; index++) {
+            RectF child = getHoodle(index);
+            canvas.drawArc(child, 0, 360, false, mPaint);
+        }
     }
 
-    public RectF getHoodle() {
+    public RectF getHoodle(int index) {
         RectF rectF = new RectF();
-        float xCenter = (float) (circle.x + Math.cos(mHoodleAngle) * circle.radius);
-        float yCenter = (float) (circle.y + Math.sin(mHoodleAngle) * circle.radius);
+        float xCenter = (float) (circle.x + Math.cos(mHoodleAngle - 0.5 * index) * circle.radius);
+        float yCenter = (float) (circle.y + Math.sin(mHoodleAngle - 0.5 * index) * circle.radius);
 
-        rectF.left = xCenter - mHoodleRadius;
-        rectF.top = yCenter - mHoodleRadius;
-        rectF.right = xCenter + mHoodleRadius;
-        rectF.bottom = yCenter + mHoodleRadius;
+        rectF.left = xCenter - mHoodleRadiusArray[index];
+        rectF.top = yCenter - mHoodleRadiusArray[index];
+        rectF.right = xCenter + mHoodleRadiusArray[index];
+        rectF.bottom = yCenter + mHoodleRadiusArray[index];
         return rectF;
     }
 
@@ -96,7 +102,7 @@ public class HoodleProgress extends View {
         Log.i(TAG, "onDetachedFromWindow: ");
         stopAnimation();
     }
-    
+
     class Cricle {
         int x;
         int y;
@@ -120,17 +126,11 @@ public class HoodleProgress extends View {
     private void initAnimation() {
         if (!startEd) {
             startEd = true;
-            valueAnimator = ValueAnimator.ofObject(new FloatEvaluator(), -Math.PI / 2, Math.PI * 3 / 2);
+            valueAnimator = ValueAnimator.ofObject(new MyFloatEvaluator(), -Math.PI / 2, Math.PI * 3 / 2);
             valueAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
             valueAnimator.setRepeatCount(10000);
-            valueAnimator.setDuration(1500);
-            valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public void onAnimationUpdate(ValueAnimator animation) {
-                    mHoodleAngle = (float) animation.getAnimatedValue();
-                    invalidate();
-                }
-            });
+            valueAnimator.setDuration(1000);
+            valueAnimator.addUpdateListener(new UpdateListener());
             startAnimation();
         }
     }
@@ -147,8 +147,15 @@ public class HoodleProgress extends View {
             valueAnimator.end();
         }
     }
-}
 
+    class UpdateListener implements ValueAnimator.AnimatorUpdateListener {
+        @Override
+        public void onAnimationUpdate(ValueAnimator animation) {
+            mHoodleAngle = (float) animation.getAnimatedValue();
+            invalidate();
+        }
+    }
+}
 
 
 
