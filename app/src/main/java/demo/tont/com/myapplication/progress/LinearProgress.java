@@ -1,4 +1,4 @@
-package demo.tont.com.myapplication;
+package demo.tont.com.myapplication.progress;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -10,6 +10,8 @@ import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
+
+import demo.tont.com.myapplication.R;
 
 /**
  * 支持水平和垂直两个方向的进度条

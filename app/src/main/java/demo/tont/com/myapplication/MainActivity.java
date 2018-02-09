@@ -10,6 +10,12 @@ import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.RadioButton;
 
+import demo.tont.com.myapplication.dialog.ButtonDialog;
+import demo.tont.com.myapplication.progress.HoodleProgress;
+import demo.tont.com.myapplication.progress.LinearProgress;
+import demo.tont.com.myapplication.progress.RingProgress;
+import demo.tont.com.myapplication.radiogroup.MyRadioGroup;
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getName();
 

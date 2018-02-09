@@ -1,4 +1,4 @@
-package demo.tont.com.myapplication;
+package demo.tont.com.myapplication.progress;
 
 import android.animation.ValueAnimator;
 import android.content.Context;

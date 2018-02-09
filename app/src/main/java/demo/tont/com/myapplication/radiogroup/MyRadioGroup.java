@@ -1,4 +1,4 @@
-package demo.tont.com.myapplication;
+package demo.tont.com.myapplication.radiogroup;
 
 import android.content.Context;
 import android.content.res.TypedArray;

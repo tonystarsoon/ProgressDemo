@@ -6,7 +6,7 @@
     android:background="@android:color/white"
     android:orientation="vertical">
 
-    <demo.tont.com.myapplication.RingProgress
+    <demo.tont.com.myapplication.progress.RingProgress
         android:id="@+id/progress"
         android:layout_width="160dp"
         android:layout_height="160dp"
@@ -22,7 +22,7 @@
         tony:ringBackground="@color/ring_bg"
         tony:ringStroke="6dp" />
 
-    <demo.tont.com.myapplication.LinearProgress
+    <demo.tont.com.myapplication.progress.LinearProgress
         android:id="@+id/linearProgress"
         android:layout_width="210dp"
         android:layout_height="10dp"
@@ -39,14 +39,14 @@
         tony:linearProgressTextSize="6sp" />
 
 
-    <demo.tont.com.myapplication.HoodleProgress
+    <demo.tont.com.myapplication.progress.HoodleProgress
         android:id="@+id/hoodleProgress"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_margin="10dp"
         android:visibility="gone" />
 
-    <demo.tont.com.myapplication.MyRadioGroup
+    <demo.tont.com.myapplication.radiogroup.MyRadioGroup
         android:id="@+id/select_dialog"
         android:layout_width="match_parent"
         android:layout_height="60dp"

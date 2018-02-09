@@ -1,4 +1,4 @@
-package demo.tont.com.myapplication;
+package demo.tont.com.myapplication.progress;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -16,6 +16,8 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
+
+import demo.tont.com.myapplication.R;
 
 /**
  * 仿华为天气进度圈

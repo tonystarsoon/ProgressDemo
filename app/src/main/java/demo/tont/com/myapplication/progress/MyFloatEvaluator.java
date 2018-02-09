@@ -1,4 +1,4 @@
-package demo.tont.com.myapplication;
+package demo.tont.com.myapplication.progress;
 
 import android.animation.FloatEvaluator;
 import android.util.Log;

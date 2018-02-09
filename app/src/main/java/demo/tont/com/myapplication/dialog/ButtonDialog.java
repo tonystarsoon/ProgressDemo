@@ -1,4 +1,4 @@
-package demo.tont.com.myapplication;
+package demo.tont.com.myapplication.dialog;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -17,6 +17,8 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import java.io.Serializable;
+
+import demo.tont.com.myapplication.R;
 
 /**
  * 基于builder模式的弹窗

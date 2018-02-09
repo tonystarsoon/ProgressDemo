@@ -1,4 +1,4 @@
-package demo.tont.com.myapplication;
+package demo.tont.com.myapplication.progress;
 
 import android.annotation.TargetApi;
 import android.content.Context;
