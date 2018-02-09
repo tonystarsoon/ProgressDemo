@@ -1,5 +1,6 @@
 package demo.tont.com.myapplication.progress;
 
+import android.animation.FloatEvaluator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -10,7 +11,7 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
 
 
 public class HoodleProgress extends View {
@@ -20,7 +21,7 @@ public class HoodleProgress extends View {
     private Cricle circle = null;
     private int mHoodleRadius = 15;//小弹珠的半径
     private int[] mHoodleRadiusArray = new int[4];//小弹珠的半径
-    private double mHoodleAngle = -Math.PI / 2;
+    private double mHoodleAngle = 2 * Math.PI;
     private boolean startEd = false;
     private ValueAnimator valueAnimator;
 
@@ -86,8 +87,9 @@ public class HoodleProgress extends View {
 
     public RectF getHoodle(int index) {
         RectF rectF = new RectF();
-        float xCenter = (float) (circle.x + Math.cos(mHoodleAngle - 0.5 * index) * circle.radius);
-        float yCenter = (float) (circle.y + Math.sin(mHoodleAngle - 0.5 * index) * circle.radius);
+        double realAngle = mHoodleAngle % (2 * Math.PI) - Math.sin(0.5 * (index + 1) * (((mHoodleAngle % (2 * Math.PI))) / (2 * Math.PI)));
+        float xCenter = (float) (circle.x + Math.cos(realAngle) * circle.radius);
+        float yCenter = (float) (circle.y + Math.sin(realAngle) * circle.radius);
 
         rectF.left = xCenter - mHoodleRadiusArray[index];
         rectF.top = yCenter - mHoodleRadiusArray[index];
@@ -126,10 +128,10 @@ public class HoodleProgress extends View {
     private void initAnimation() {
         if (!startEd) {
             startEd = true;
-            valueAnimator = ValueAnimator.ofObject(new MyFloatEvaluator(), -Math.PI / 2, Math.PI * 3 / 2);
-            valueAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
+            valueAnimator = ValueAnimator.ofObject(new FloatEvaluator(), 0, 2 * Math.PI * 1000);
+            valueAnimator.setInterpolator(new LinearInterpolator());
             valueAnimator.setRepeatCount(10000);
-            valueAnimator.setDuration(1000);
+            valueAnimator.setDuration(5000 * 1000);
             valueAnimator.addUpdateListener(new UpdateListener());
             startAnimation();
         }
@@ -152,6 +154,7 @@ public class HoodleProgress extends View {
         @Override
         public void onAnimationUpdate(ValueAnimator animation) {
             mHoodleAngle = (float) animation.getAnimatedValue();
+            Log.i(TAG, "onAnimationUpdate: " + mHoodleAngle);
             invalidate();
         }
     }
