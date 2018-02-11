@@ -41,6 +41,7 @@
 
     <demo.tont.com.myapplication.progress.HoodleProgress
         android:id="@+id/hoodleProgress"
+        android:visibility="gone"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_margin="10dp" />
@@ -50,13 +51,11 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_gravity="center"
-        android:visibility="gone"
-        tony:lineCount="3" />
+        tony:lineCount="2" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:onClick="dialog1"
-        android:text="tianjia"
-        android:visibility="gone" />
+        android:text="tianjia" />
 </LinearLayout>

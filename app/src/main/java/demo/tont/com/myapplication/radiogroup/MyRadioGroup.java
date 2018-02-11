@@ -63,6 +63,8 @@ public class MyRadioGroup extends ViewGroup implements View.OnClickListener {
         int childCount = getChildCount();
         int eachMeasuredWidth = getMeasuredWidth() / mLineCount;
 
+        int[] leftArray = new int[mLineCount];
+
         int left = 0;
         int top = 0;
         int right = 0;
@@ -72,7 +74,10 @@ public class MyRadioGroup extends ViewGroup implements View.OnClickListener {
             View childAt = getChildAt(index);
             int measuredWidth = childAt.getMeasuredWidth();
             int measuredHeight = childAt.getMeasuredHeight();
-            left = (index % mLineCount) * eachMeasuredWidth + (eachMeasuredWidth - measuredWidth) / 2;
+            if (index < mLineCount) {
+                leftArray[index] = (index % mLineCount) * eachMeasuredWidth + (eachMeasuredWidth - measuredWidth) / 2;
+            }
+            left = leftArray[index % mLineCount];
             top = (index / mLineCount) * (defaultMargin + maxChildHeight) + defaultMargin + (maxChildHeight - measuredHeight) / 2;
             right = left + measuredWidth;
             bottom = top + measuredHeight;
